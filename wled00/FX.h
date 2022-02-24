@@ -115,7 +115,7 @@
 #define IS_REVERSE      ((SEGMENT.options & REVERSE     ) == REVERSE     )
 #define IS_SELECTED     ((SEGMENT.options & SELECTED    ) == SELECTED    )
 
-#define MODE_COUNT  119
+#define MODE_COUNT  120
 
 #define FX_MODE_STATIC                   0
 #define FX_MODE_BLINK                    1
@@ -236,6 +236,7 @@
 #define FX_MODE_TV_SIMULATOR           116
 #define FX_MODE_DYNAMIC_SMOOTH         117
 #define FX_MODE_BICYCLE_FOR_NIKA       118
+#define FX_MODE_UKRAINE                119
 
 class WS2812FX {
   typedef uint16_t (WS2812FX::*mode_ptr)(void);
@@ -609,6 +610,7 @@ class WS2812FX {
       _mode[FX_MODE_TV_SIMULATOR]            = &WS2812FX::mode_tv_simulator;
       _mode[FX_MODE_DYNAMIC_SMOOTH]          = &WS2812FX::mode_dynamic_smooth;
       _mode[FX_MODE_BICYCLE_FOR_NIKA]        = &WS2812FX::mode_bicycle;
+      _mode[FX_MODE_UKRAINE]                 = &WS2812FX::mode_ukraine;
 
       _brightness = DEFAULT_BRIGHTNESS;
       currentPalette = CRGBPalette16(CRGB::Black);
@@ -829,7 +831,8 @@ class WS2812FX {
       mode_blends(void),
       mode_tv_simulator(void),
       mode_dynamic_smooth(void),
-      mode_bicycle(void);
+      mode_bicycle(void),
+      mode_ukraine(void);
 
   private:
     uint32_t crgb_to_col(CRGB fastled);
@@ -922,7 +925,7 @@ const char JSON_mode_names[] PROGMEM = R"=====([
 "Twinklefox","Twinklecat","Halloween Eyes","Solid Pattern","Solid Pattern Tri","Spots","Spots Fade","Glitter","Candle","Fireworks Starburst",
 "Fireworks 1D","Bouncing Balls","Sinelon","Sinelon Dual","Sinelon Rainbow","Popcorn","Drip","Plasma","Percent","Ripple Rainbow",
 "Heartbeat","Pacifica","Candle Multi", "Solid Glitter","Sunrise","Phased","Twinkleup","Noise Pal", "Sine","Phased Noise",
-"Flow","Chunchun","Dancing Shadows","Washing Machine","Candy Cane","Blends","TV Simulator","Dynamic Smooth","Bicycle for Nika"
+"Flow","Chunchun","Dancing Shadows","Washing Machine","Candy Cane","Blends","TV Simulator","Dynamic Smooth","Bicycle for Nika","Ukraine"
 ])=====";
 
 

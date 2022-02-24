@@ -4670,6 +4670,33 @@ uint16_t WS2812FX::mode_aurora(void)
   return FRAMETIME;
 }
 
+uint16_t WS2812FX::mode_ukraine(void)
+{
+ const uint8_t currentPattern[64]={
+    0,  0,  0,  0,   0,   0,   0,   0,
+    0,  0,  0,  0,   0,    0,   0,   0,
+    0,  0,  0,  0,   0,    0,   0,   0,
+    0,  0,  0,  0,   0,    0,   0,   0,
+    1,1,1,1,1,1,1,1,
+    1,1,1,1,1,1,1,1,
+    1,1,1,1,1,1,1,1,
+    1,1,1,1,1,1,1,1
+  };
+  CRGB colors[2]={CRGB::Blue, CRGB::Yellow};
+  CRGB fastled_col; 
+
+  for (uint16_t i = 0; i < 64; i++)
+  {
+    uint8_t row = (i / 8);
+    uint8_t rowIsEven = (row % 2) == 1;
+    uint8_t newIndex = rowIsEven ? i : (row * 8) + 7 - i % 8; 
+    uint8_t currentColorIndex = currentPattern[i];
+    fastled_col = colors[currentColorIndex%5];
+  
+    setPixelColor(newIndex, fastled_col.red, fastled_col.green, fastled_col.blue);
+  }
+}
+
 uint16_t WS2812FX::mode_bicycle(void)
 {
  const uint8_t patternStop[64]={
